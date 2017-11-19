@@ -54,8 +54,20 @@ find_package(catkin REQUIRED
     rospy
     std_msgs
     actionlib
-    darknet_ros_msgs
+    # darknet_ros_msgs
+    message_generation
     image_transport
+)
+
+add_message_files(
+  FILES
+  BoundingBox.msg
+  BoundingBoxes.msg
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
 )
 
 # Enable OPENCV in darknet
@@ -73,7 +85,8 @@ catkin_package(
     actionlib
     rospy
     std_msgs
-    darknet_ros_msgs
+    # darknet_ros_msgs
+    message_runtime
     image_transport
   DEPENDS
     Boost
