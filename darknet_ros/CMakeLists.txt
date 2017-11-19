@@ -139,6 +139,8 @@ if (CUDA_FOUND)
     ${DARKNET_PATH}/src/crop_layer_kernels.cu
   )
 
+  add_dependencies(${PROJECT_NAME}_lib darknet_ros_msgs_generate_messages_cpp)
+
   target_link_libraries(${PROJECT_NAME}_lib
     m
     pthread
@@ -195,6 +197,8 @@ else()
     ${DARKNET_PATH}/examples/lsd.c                ${DARKNET_PATH}/examples/writing.c
     ${DARKNET_PATH}/examples/nightmare.c          ${DARKNET_PATH}/examples/yolo.c
   )
+
+  add_dependencies(${PROJECT_NAME}_lib darknet_ros_msgs_generate_messages_cpp)
 
   target_link_libraries(${PROJECT_NAME}_lib
     m
