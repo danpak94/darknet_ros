@@ -31,9 +31,14 @@
 #include <cv_bridge/cv_bridge.h>
 
 // darknet_ros_msgs
-#include <darknet_ros_msgs/BoundingBoxes.h>
-#include <darknet_ros_msgs/BoundingBox.h>
-#include <darknet_ros_msgs/CheckForObjectsAction.h>
+// #include <darknet_ros_msgs/BoundingBoxes.h>
+// #include <darknet_ros_msgs/BoundingBox.h>
+// #include <darknet_ros_msgs/CheckForObjectsAction.h>
+
+#include <darknet_ros/BoundingBoxes.h>
+#include <darknet_ros/BoundingBox.h>
+#include <darknet_ros/CheckForObjectsAction.h>
+
 
 namespace darknet_ros {
 

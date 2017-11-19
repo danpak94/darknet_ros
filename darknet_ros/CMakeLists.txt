@@ -54,7 +54,10 @@ find_package(catkin REQUIRED
     rospy
     std_msgs
     actionlib
-    # darknet_ros_msgs
+    actionlib_msgs
+    geometry_msgs
+    sensor_msgs
+    genmsg
     message_generation
     image_transport
 )
@@ -65,9 +68,17 @@ add_message_files(
   BoundingBoxes.msg
 )
 
+add_action_files(
+  FILES
+    CheckForObjects.action
+)
+
 generate_messages(
   DEPENDENCIES
-  std_msgs
+    actionlib_msgs
+    geometry_msgs
+    sensor_msgs
+    std_msgs
 )
 
 # Enable OPENCV in darknet
@@ -75,21 +86,24 @@ add_definitions(-DOPENCV)
 add_definitions(-O4 -g)
 
 catkin_package(
-  INCLUDE_DIRS
-    include
-  LIBRARIES
-    ${PROJECT_NAME}_lib
   CATKIN_DEPENDS
     cv_bridge
     roscpp
     actionlib
     rospy
     std_msgs
-    # darknet_ros_msgs
+    actionlib_msgs
+    geometry_msgs
+    sensor_msgs
+    genmsg
     message_runtime
     image_transport
   DEPENDS
     Boost
+  INCLUDE_DIRS
+    include
+  LIBRARIES
+    ${PROJECT_NAME}_lib
 )
 
 include_directories(
@@ -168,6 +182,8 @@ if (CUDA_FOUND)
     src/yolo_object_detector_node.cpp
   )
 
+  add_dependencies(${PROJECT_NAME} ${darknet_ros_EXPORTED_TARGETS})
+
 else()
 
   add_library(${PROJECT_NAME}_lib
@@ -220,6 +236,8 @@ else()
   add_executable(${PROJECT_NAME}
     src/yolo_object_detector_node.cpp
   )
+
+  add_dependencies(${PROJECT_NAME} ${darknet_ros_EXPORTED_TARGETS})
 
 endif()
 
