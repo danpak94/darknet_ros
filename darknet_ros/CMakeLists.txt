@@ -151,6 +151,7 @@ if (CUDA_FOUND)
     curand
     ${Boost_LIBRARIES}
     ${catkin_LIBRARIES}
+    ${OpenCV_LIBRARIES}
   )
 
   cuda_add_executable(${PROJECT_NAME}
@@ -206,6 +207,7 @@ else()
     stdc++
     ${Boost_LIBRARIES}
     ${catkin_LIBRARIES}
+    ${OpenCV_LIBRARIES}
   )
 
   add_executable(${PROJECT_NAME}
